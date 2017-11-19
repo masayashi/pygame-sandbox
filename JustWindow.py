@@ -1,12 +1,16 @@
 import sys
 import pygame
-from pygame.locals import QUIT
+from pygame.locals import *
 
 pygame.init()
 
 # ディスプレイ作成
 SURFACE = pygame.display.set_mode( (1280,720) )
 pygame.display.set_caption("Just Window")
+
+def quit():
+    pygame.quit()
+    sys.exit()
 
 def main():
     # メインループ
@@ -17,8 +21,11 @@ def main():
         # イベントハンドル
         for event in pygame.event.get():
             if event.type == QUIT: # 終了イベント
-                pygame.quit()
-                sys.exit()
+                quit()
+
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    quit()
 
         # UPDATE
         pygame.display.update()
